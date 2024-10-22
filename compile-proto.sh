@@ -39,12 +39,6 @@ compile_proto_files() {
 		if [ -f "$PROTO_FILE" ]; then
 			echo "Compiling $PROTO_FILE"
 			protoc --plugin=protoc-gen-ts=./node_modules/.bin/protoc-gen-ts --ts_out=grpc_js:$OUTPUT_DIR -I $PROTO_ROOT_DIR $PROTO_FILE
-			# have to add buffer import to make deno happy
-			proto_dir=$(dirname ${PROTO_FILE})
-			echo proto dir is "$proto_dir"
-			output_file=${OUTPUT_DIR}${proto_dir#"$PROTO_ROOT_DIR"}/$(basename ${PROTO_FILE} .proto).ts
-			echo output file is "$output_file"
-			sed -i -e "1i // deno-lint-ignore-file no-namespace no-explicit-any\nimport { Buffer } from \"node:buffer\";" ${output_file}
 		fi
 	done
 

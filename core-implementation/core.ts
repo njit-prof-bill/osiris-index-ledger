@@ -1,6 +1,6 @@
 import grpc from "@grpc/grpc-js";
-import { addService, type GRPCFunc, loadProtoService } from "../proto.ts";
-import { helloworld } from "../generated/hello.ts";
+import { addService, type GRPCFunc, loadProtoService } from "../proto";
+import { helloworld } from "../generated/hello";
 
 export default function addModule(server: grpc.Server) {
 	addService(
@@ -10,7 +10,7 @@ export default function addModule(server: grpc.Server) {
 			"helloworld",
 			"Greeter",
 		),
-		"hello",
+		"SayHello",
 		hello,
 	);
 }
@@ -19,12 +19,11 @@ const hello: GRPCFunc<helloworld.HelloRequest, helloworld.HelloReply> = (
 	request,
 	respond,
 ) => {
-	respond(
-		{
-			code: grpc.status.OK,
-		},
+	const message = `hello, ${request.request.name}!!!`;
+	console.log(message);
+	respond(null,
 		new helloworld.HelloReply({
-			message: `hello, ${request.request.name}!!!`,
+			message,
 		}),
 	);
 };
