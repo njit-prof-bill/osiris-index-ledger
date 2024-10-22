@@ -1,5 +1,5 @@
 import grpc from "@grpc/grpc-js";
-import core from "./core-implementation/core.ts";
+import core from "./core-implementation/core";
 
 function main() {
 	const server = new grpc.Server();
