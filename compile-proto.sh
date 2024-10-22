@@ -5,8 +5,8 @@ cd "$(dirname "$0")"
 # https://stackoverflow.com/a/77131901
 
 # Initialize variables for input and output directories
-PROTO_ROOT_DIR=./proto/
-OUTPUT_DIR=./generated/
+PROTO_ROOT_DIR=./proto
+OUTPUT_DIR=./generated
 
 # Parse command-line arguments for input and output directories
 while getopts "i:o:" opt; do
@@ -34,17 +34,21 @@ fi
 
 # Function to compile proto files
 compile_proto_files() {
-	for PROTO_FILE in "$1"*.proto; do
+	dir="${1%"/"}"
+	for PROTO_FILE in "$dir"/*.proto; do
 		if [ -f "$PROTO_FILE" ]; then
-			echo "Compiling $PROTO_FILE..."
+			echo "Compiling $PROTO_FILE"
 			protoc --plugin=protoc-gen-ts=./node_modules/.bin/protoc-gen-ts --ts_out=grpc_js:$OUTPUT_DIR -I $PROTO_ROOT_DIR $PROTO_FILE
 			# have to add buffer import to make deno happy
-			output_file=${OUTPUT_DIR}/$(basename ${PROTO_FILE} .proto).ts
+			proto_dir=$(dirname ${PROTO_FILE})
+			echo proto dir is "$proto_dir"
+			output_file=${OUTPUT_DIR}${proto_dir#"$PROTO_ROOT_DIR"}/$(basename ${PROTO_FILE} .proto).ts
+			echo output file is "$output_file"
 			sed -i -e "1i // deno-lint-ignore-file no-namespace no-explicit-any\nimport { Buffer } from \"node:buffer\";" ${output_file}
 		fi
 	done
 
-	for SUB_DIR in "$1"/*/; do
+	for SUB_DIR in "$dir"/*/; do
 		if [ -d "$SUB_DIR" ]; then
 			compile_proto_files "$SUB_DIR"
 		fi
