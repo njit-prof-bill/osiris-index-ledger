@@ -5,11 +5,7 @@ import { helloworld } from "../generated/hello";
 export default function addModule(server: grpc.Server) {
 	addService(
 		server,
-		loadProtoService(
-			"proto/hello.proto",
-			"helloworld",
-			"Greeter",
-		),
+		loadProtoService("proto/hello.proto", "helloworld", "Greeter"),
 		"SayHello",
 		hello,
 	);
@@ -21,7 +17,8 @@ const hello: GRPCFunc<helloworld.HelloRequest, helloworld.HelloReply> = (
 ) => {
 	const message = `hello, ${request.request.name}!!!`;
 	console.log(message);
-	respond(null,
+	respond(
+		null,
 		new helloworld.HelloReply({
 			message,
 		}),
