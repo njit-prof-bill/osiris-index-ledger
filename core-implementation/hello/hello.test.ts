@@ -1,9 +1,10 @@
 import grpc, { ServiceError } from "@grpc/grpc-js";
-import { server, target } from "../../main.js";
+import { server, serverUp, target } from "../../main.js";
 import { helloworld } from "../../generated/hello.js";
 
 let client: helloworld.GreeterClient;
-beforeAll(() => {
+beforeAll(async () => {
+	await serverUp;
 	client = new helloworld.GreeterClient(
 		target,
 		grpc.credentials.createInsecure(),
