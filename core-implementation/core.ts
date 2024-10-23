@@ -1,6 +1,6 @@
 import grpc from "@grpc/grpc-js";
-import { addService, type GRPCFunc, loadProtoService } from "../proto";
-import { helloworld } from "../generated/hello";
+import { addService, type GRPCFunc, loadProtoService } from "../proto.js";
+import { helloworld } from "../generated/hello.js";
 
 export default function addModule(server: grpc.Server) {
 	addService(
