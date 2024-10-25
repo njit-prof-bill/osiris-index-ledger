@@ -24,12 +24,12 @@
 		"typescript": "^5.6.3"
 	},
 	"scripts": {
-		"format:ts": "npx tsx format_ts.ts",
-		"format:proto": "npx tsx format_proto.ts",
+		"format:ts": "npx tsx scripts/format_ts.ts",
+		"format:proto": "npx tsx scripts/format_proto.ts",
 		"format": "npm run format:proto && npm run format:ts",
-		"build:proto": "tsx build_proto.ts",
+		"build:proto": "tsx scripts/build_proto.ts",
 		"build": "npm run clean && npm run build:proto && tsc -p . && ncp proto dist/proto",
-		"clean": "rimraf dist",
+		"clean": "rimraf dist && rimraf generated",
 		"dev": "tsx --watch main.ts",
 		"test": "npm run build && node --experimental-vm-modules node_modules/jest/bin/jest.js --rootDir dist"
 	},
