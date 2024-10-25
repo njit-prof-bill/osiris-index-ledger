@@ -1,6 +1,19 @@
 # Project Plan
 
 ## Technology Description
+**Node/NPM**
+- Package manager
+<!-- end of list -->
+**Redis**
+- Key-value Database and message broker
+<!-- end of list --> 
+**Typescript**
+- Javascript with easier error checking, only in dev
+<!-- end of list -->
+**gRPC**
+- Alternative to REST API, faster and can do remote procedure calls
+- Uses protobufs
+<!-- end of list --> 
 
 ## List of Assignments
 **Janish Suneja**
