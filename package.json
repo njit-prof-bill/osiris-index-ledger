@@ -24,8 +24,8 @@
 		"typescript": "^5.6.3"
 	},
 	"scripts": {
-		"format:ts": "npx tsx scripts/format_ts.ts",
-		"format:proto": "npx tsx scripts/format_proto.ts",
+		"format:ts": "tsx scripts/format_ts.ts",
+		"format:proto": "tsx scripts/format_proto.ts",
 		"format": "npm run format:proto && npm run format:ts",
 		"build:proto": "tsx scripts/build_proto.ts",
 		"build": "npm run clean && npm run build:proto && tsc -p . && ncp proto dist/proto",
