@@ -28,7 +28,7 @@ message Transaction {
 	string transaction_id = 1;
 	string sender = 2;
 	string receiver = 3;
-	// todo: a bigint might be more appropriate for currency amounts
+	// TODO: a bigint might be more appropriate for currency amounts
 	// talk to prof about this
 	float amount = 4;
 	string timestamp = 5;
@@ -49,7 +49,7 @@ message AuditReport {
 }
 
 message Issue {
-	// todo: get clarification here
+	// TODO: get clarification here
 	// the spec doesn't specify what should be in here
 }
 
