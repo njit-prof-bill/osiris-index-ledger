@@ -5,7 +5,7 @@ export const recordTransaction: GRPCFunc<core.Transaction, core.Status> = (
 	request,
 	respond,
 ) => {
-	// todo: put the transaction in some kind of database
+	// TODO: put the transaction in some kind of database
 	respond(
 		null,
 		new core.Status({
