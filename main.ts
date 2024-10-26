@@ -8,7 +8,7 @@ core(server);
 async function retryBind(): Promise<void> {
 	return bind().catch((err: Error) => {
 		if (err.message.includes("address already in use")) {
-			// todo: turn off this functionality in prod
+			// TODO: turn off this functionality in prod
 			const oldTarget = target;
 			target = "0.0.0.0:" + Math.floor(Math.random() * 20000 + 10000);
 			console.log(

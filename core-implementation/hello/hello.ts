@@ -1,5 +1,6 @@
 import { helloworld } from "../../generated/hello.js";
 import { GRPCFunc } from "../../proto.js";
+import grpc from "@grpc/grpc-js";
 
 export const hello: GRPCFunc<helloworld.HelloRequest, helloworld.HelloReply> = (
 	request,
