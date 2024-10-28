@@ -1,7 +1,6 @@
 import path from "path";
-import grpc from "@grpc/grpc-js";
+import grpc, { handleUnaryCall } from "@grpc/grpc-js";
 import protoLoader from "@grpc/proto-loader";
-
 import { fileURLToPath } from "url";
 
 const __filename = fileURLToPath(import.meta.url);
@@ -27,18 +26,12 @@ export function loadProtoService(
 	return proto;
 }
 
-export function addService<ReqType, ResType>(
+export function addService(
 	server: grpc.Server,
 	proto: grpc.ServiceClientConstructor,
-	rpcName: string,
-	rpcFunc: GRPCFunc<ReqType, ResType>,
-) {
-	const impl: grpc.UntypedServiceImplementation = {};
-	impl[rpcName] = rpcFunc;
-	server.addService(proto.service, impl);
+	rpcs: {
+		[rpcName: string]: handleUnaryCall<any, any>;
+	},
+): void {
+	server.addService(proto.service, rpcs);
 }
-
-export type GRPCFunc<ReqType, ResType> = (
-	call: grpc.ServerUnaryCall<ReqType, ResType>,
-	callback: grpc.sendUnaryData<ResType>,
-) => void;
