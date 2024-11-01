@@ -4,7 +4,7 @@ import { hello } from "./hello/hello.js";
 export default function addModule(server) {
     /*addService(
         server,
-        loadProtoService("proto/core/core.proto", "core", "IndexLedger"),
+        loadProtoService("proto/sync/sync.proto", "sync", "IndexSynchro"),
         {
         },
     );*/
