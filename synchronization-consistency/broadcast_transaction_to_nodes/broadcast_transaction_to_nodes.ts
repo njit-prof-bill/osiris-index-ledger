@@ -7,14 +7,21 @@ export const BroadcastTransaction: handleUnaryCall<sync.TransactionId, sync.Stat
 ) => {
 	const transactionId = req.request.transaction_id;
 
+	// call broadcastToNodes, passes transaction id
 	const isSuccess = broadcastToNodes(transactionId);
 
-	// Creates response message
-	const response: sync.Status = { succeeded: isSuccess };
-
+	// Create and send out response message
+	const response = new sync.Status();
+	response.succeeded = isSuccess;
 	res(null, response);
 };
 
+/**
+ * This function takes the transactionId and attempts to broadcast it to all nodes (true if succesfull, false if not)
+ * 
+ * @param transactionId 
+ * @returns true (broadcast successful) or false (broadcast not successful)
+ */
 function broadcastToNodes(transactionId: string): boolean {
 	try {
 		console.log("Broadcasting transaction ${transactionId} to all nodes...");
