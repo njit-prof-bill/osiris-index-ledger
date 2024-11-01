@@ -1,0 +1,56 @@
+syntax = "proto3";
+
+package sync;
+
+service IndexSynchro {
+    rpc SyncLedger() returns (Status) {}
+    rpc DetectLedgerConflicts() returns (ConflictList) {}
+    rpc ResolveLedgerConflict(ConflictResolver) returns (Status) {}
+    rpc BroadcastTransaction(TransactionId) returns (Status) {}
+    rpc FetchMissingTransactions() returns (TransactionIdList) {}
+    rpc MonitorLedgerSyncStatus() returns (SyncStatus) {}
+    rpc ForceLedgerReconciliation() returns (Status) {}
+    rpc SetLedgerConflictResolutionStrategy() returns (Status) {}
+    rpc ScheduleLedgerSync(Interval) returns (Status) {}
+    rpc ViewLedgerSyncHistory(Limit) returns (SyncEventList) {}
+}
+
+message Status {bool succeeded = 1; }
+
+message TransactionId { string transaction_id = 1; }
+
+message Strategy { string strategy = 1; }
+
+message Interval { string interval = 1; }
+
+message TransactionIdList { repeated TransactionId transaction_list = 1; }
+
+message Error { string error = 1; }
+
+message Limit { int32 limit = 1; }
+
+message Conflict  {
+    string transaction_id = 1;
+    string conflicting_transaction = 2;
+    string reason = 3;
+}
+
+message SyncEvent {
+    string timestamp = 1;
+    string status = 2;
+}
+
+message SyncStatus {
+    string status = 1;
+    int32 progress = 2;
+    repeated Error errors = 3;
+}
+
+message ConflictResolver {
+    string transaction_id = 1;
+    string resolution_strategy = 2;
+}
+
+message ConflictList { repeated Conflict conflict_list = 1; }
+
+message SyncEventList { repeated SyncEvent sync_list = 1; }
