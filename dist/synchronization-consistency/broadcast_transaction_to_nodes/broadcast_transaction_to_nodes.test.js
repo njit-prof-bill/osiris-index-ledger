@@ -1,15 +1,19 @@
 import { BroadcastTransaction, broadcastToNodes } from './broadcast_transaction_to_nodes.js'; // Adjust the path
 import { sync } from '../../generated/sync/sync.js';
-jest.mock('./broadcast_transaction_to_nodes.js', () => ({
-    ...jest.requireActual('./broadcast_transaction_to_nodes.js'),
-    broadcastToNodes: jest.fn(),
-}));
+jest.mock('./broadcast_transaction_to_nodes.js', () => {
+    const actual = jest.requireActual('./broadcast_transaction_to_nodes.js'); // Use import here
+    return {
+        ...actual,
+        broadcastToNodes: jest.fn(),
+    };
+});
 describe('BroadcastTransaction', () => {
     let mockReq;
     let mockRes;
     beforeEach(() => {
+        // Create a valid TransactionId instance
         mockReq = {
-            request: new sync.TransactionId({ transaction_id: '1234' }),
+            request: new sync.TransactionId({ transaction_id: '1234' }), // Create a valid instance
         };
         mockRes = jest.fn();
     });
