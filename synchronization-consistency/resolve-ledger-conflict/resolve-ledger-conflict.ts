@@ -5,7 +5,7 @@ import { sync } from "../../generated/sync/sync.js";
 export const ledger: sync.Conflict[] = [];
 
 // TODO: Integrate with a real database
-export const resolve_ledger_conflicts: handleUnaryCall<
+export const resolveLedgerConflict: handleUnaryCall<
 	sync.ConflictResolver,
 	sync.Status
 > = (request, respond) => {

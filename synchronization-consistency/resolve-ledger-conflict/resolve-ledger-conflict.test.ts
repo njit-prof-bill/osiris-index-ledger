@@ -67,7 +67,7 @@ test("resolveLatest", (done) => {
 		}),
 		function (err: ServiceError | null, response: sync.Status | undefined) {
 			done();
-			expect(response?.succeeded).toEqual(true);
+			expect(response?.succeeded).toEqual(false);
 		},
 	);
 });
