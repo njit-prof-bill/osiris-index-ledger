@@ -14,7 +14,7 @@ export const BroadcastTransaction = (req, res) => {
  * @param transactionId
  * @returns true (broadcast successful) or false (broadcast not successful)
  */
-function broadcastToNodes(transactionId) {
+export function broadcastToNodes(transactionId) {
     try {
         console.log("Broadcasting transaction ${transactionId} to all nodes...");
         // Implement broadcasting logic to all nodes (eg. looping through nodes, sending transactions, awaiting confirmation, etc.)
