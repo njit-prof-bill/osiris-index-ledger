@@ -11,7 +11,7 @@ export default function addModule(server: grpc.Server) {
 		loadProtoService("proto/sync/sync.proto", "sync", "IndexSynchro"),
 		{
 			ScheduleLedgerSync: scheduleLedgerSync,
-			viewLedgerSyncHistory: viewLedgerSyncHistory,
+			ViewLedgerSyncHistory: viewLedgerSyncHistory,
 		},
 	);
 	addService(
