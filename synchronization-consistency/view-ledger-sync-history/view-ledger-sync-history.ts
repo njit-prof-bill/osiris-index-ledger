@@ -15,7 +15,7 @@ export const viewLedgerSyncHistory: grpc.handleUnaryCall<
 > = (request, respond) => {
 	/* Create a new syncEventList that is restricted by the limit. */
     let limit = request.request.limit > 0 ? request.request.limit : 100;
-
+    
     /* Loop through all sync events and make sure not to surpass limit. */
     const syncEventListLimit: sync.SyncEvent[] = [];
     for (const syncEvent of syncEventList){
@@ -25,6 +25,8 @@ export const viewLedgerSyncHistory: grpc.handleUnaryCall<
     /* Send over the completed list. */
     respond(
         null,
-        new sync.SyncEventList(syncEventListLimit)
+        new sync.SyncEventList({
+            sync_list: syncEventListLimit
+        })
     );
 };
