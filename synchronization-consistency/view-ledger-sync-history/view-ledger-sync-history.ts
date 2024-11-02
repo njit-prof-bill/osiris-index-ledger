@@ -8,7 +8,8 @@ const syncEventList: sync.SyncEvent[] = [
     new sync.SyncEvent({"timestamp": "2024-10-17T10:00:00Z", "status": "successful"})
 ];
 
-export const scheduleLedgerSync: grpc.handleUnaryCall<
+/* Implementation. */
+export const viewLedgerSyncHistory: grpc.handleUnaryCall<
 	sync.Limit,
 	sync.SyncEventList
 > = (request, respond) => {
@@ -18,14 +19,12 @@ export const scheduleLedgerSync: grpc.handleUnaryCall<
     /* Loop through all sync events and make sure not to surpass limit. */
     const syncEventListLimit: sync.SyncEvent[] = [];
     for (const syncEvent of syncEventList){
-        syncEventListLimit.push(syncEvent);
-        limit -= 1;
-        if ( limit <= 0 ) break;
+        if (syncEventListLimit.push(syncEvent) >= limit) break;
     }
 
     /* Send over the completed list. */
     respond(
         null,
-        new sync.SyncEventList(syncEventList)
+        new sync.SyncEventList(syncEventListLimit)
     );
 };
