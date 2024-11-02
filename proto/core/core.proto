@@ -7,6 +7,7 @@ service IndexLedger {
 	rpc UpdateTransaction(TransactionUpdate) returns (Status) {}
 	rpc GetTransactionDetails(TransactionId) returns (Transaction) {}
 	rpc ListTransactions(TransactionLimit) returns (TransactionList) {}
+	rpc DeleteTransaction(TransactionId) returns (Status) {}
 	rpc AuditLedger(Null) returns (AuditReport) {}
 	rpc SearchTransactionsByUser(UserId) returns (TransactionList) {}
 	rpc GetAccountBalance(UserId) returns (CurrencyValue) {}
