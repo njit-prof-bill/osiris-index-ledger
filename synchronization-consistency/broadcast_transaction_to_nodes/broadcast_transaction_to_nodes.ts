@@ -25,7 +25,8 @@ export const BroadcastTransaction: handleUnaryCall<sync.TransactionId, sync.Stat
 function broadcastToNodes(transactionId: string): boolean {
 	try {
 		console.log("Broadcasting transaction ${transactionId} to all nodes...");
-		// Assume success
+		// Implement broadcasting logic to all nodes (eg. looping through nodes, sending transactions, awaiting confirmation, etc.)
+		// Assume success for now
 		return true;
 	}
 	catch(error) {
