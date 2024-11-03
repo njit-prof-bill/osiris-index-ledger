@@ -11,6 +11,7 @@ export const resolve_ledger_conflicts: handleUnaryCall<
 > = (request, respond) => {
     const { resolution_strategy } = request.request;
    // Check if the resolution_strategy is "latest", "merge", "manual"
+   // TODO: Add Functionality
 	if (resolution_strategy === "latest" || resolution_strategy === "merge" || resolution_strategy === "manual") {
 		respond(
 			null,

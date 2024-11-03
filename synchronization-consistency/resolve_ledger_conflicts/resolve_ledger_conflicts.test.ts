@@ -30,7 +30,7 @@ test("resolveLatest", (done) => {
 	);
 });
 
-test("resolveLatest", (done) => {
+test("resolveMerge", (done) => {
 	client.ResolveLedgerConflict(
 		new sync.ConflictResolver({
 			transaction_id: "1",
@@ -44,7 +44,7 @@ test("resolveLatest", (done) => {
 	);
 });
 
-test("resolveLatest", (done) => {
+test("resolveManual", (done) => {
 	client.ResolveLedgerConflict(
 		new sync.ConflictResolver({
 			transaction_id: "1",
@@ -58,7 +58,7 @@ test("resolveLatest", (done) => {
 	);
 });
 
-test("resolveLatest", (done) => {
+test("resolveFail", (done) => {
 	client.ResolveLedgerConflict(
 		new sync.ConflictResolver({
 			transaction_id: "1",
