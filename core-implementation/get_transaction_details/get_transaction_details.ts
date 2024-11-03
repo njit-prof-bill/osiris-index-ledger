@@ -1,7 +1,7 @@
 import { handleUnaryCall } from "@grpc/grpc-js";
 import { core } from "../../generated/core/core.js";
 
-export const GetTransactionDetails: handleUnaryCall<
+export const getTransactionDetails: handleUnaryCall<
 	core.TransactionId,
 	core.Transaction
 > = (request, respond) => {
