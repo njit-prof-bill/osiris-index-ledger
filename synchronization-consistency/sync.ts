@@ -6,6 +6,7 @@ import { setLedgerConflictResolutionStrategy } from "./set-ledger-conflict-resol
 import { scheduleLedgerSync } from "./schedule-ledger-sync/schedule-ledger-sync.js";
 import { viewLedgerSyncHistory } from "./view-ledger-sync-history/view-ledger-sync-history.js";
 import { resolveLedgerConflict } from "./resolve-ledger-conflict/resolve-ledger-conflict.js";
+import { detectLedgerConflicts } from "./detect-ledger-conflicts/detect-ledger-conflicts.js";
 /* Add APIs here as we complete them. */
 
 export default function addModule(server: grpc.Server) {
@@ -18,6 +19,7 @@ export default function addModule(server: grpc.Server) {
 			ScheduleLedgerSync: scheduleLedgerSync,
 			ViewLedgerSyncHistory: viewLedgerSyncHistory,
 			ResolveLedgerConflict: resolveLedgerConflict,
+			DetectLedgerConflicts: detectLedgerConflicts
 		},
 	);
 	addService(

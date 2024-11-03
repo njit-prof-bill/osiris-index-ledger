@@ -7,7 +7,7 @@ const syncConflict: sync.Conflict[] = [
     new sync.Conflict({ transaction_id: "txn-124", conflicting_transaction: "txn-1000", reason: "mismatched amounts" })
 ];
 
-export const detect_ledger_conflicts: handleUnaryCall<
+export const detectLedgerConflicts: handleUnaryCall<
 	null,
 	sync.ConflictList
 > = (request, respond) => {
