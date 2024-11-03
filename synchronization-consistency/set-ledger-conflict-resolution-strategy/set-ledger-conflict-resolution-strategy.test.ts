@@ -1,7 +1,7 @@
 import grpc, { status } from "@grpc/grpc-js";
 import { server, serverUp, target } from "../../main.js";
 import { sync } from "../../generated/sync/sync.js";
-import { setLedgerConflictResolutionStrategy } from "./set_ledger_conflict_resolution_strategy.js";
+import { setLedgerConflictResolutionStrategy } from "./set-ledger-conflict-resolution-strategy.js";
 
 let client : sync.IndexSynchroClient;
 
