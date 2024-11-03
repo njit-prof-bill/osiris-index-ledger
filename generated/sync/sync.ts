@@ -1148,8 +1148,8 @@ export namespace sync {
                 path: "/sync.IndexSynchro/SetLedgerConflictResolutionStrategy",
                 requestStream: false,
                 responseStream: false,
-                requestSerialize: (message: Null) => Buffer.from(message.serialize()),
-                requestDeserialize: (bytes: Buffer) => Null.deserialize(new Uint8Array(bytes)),
+                requestSerialize: (message: Strategy) => Buffer.from(message.serialize()),
+                requestDeserialize: (bytes: Buffer) => Strategy.deserialize(new Uint8Array(bytes)),
                 responseSerialize: (message: Status) => Buffer.from(message.serialize()),
                 responseDeserialize: (bytes: Buffer) => Status.deserialize(new Uint8Array(bytes))
             },
@@ -1180,7 +1180,7 @@ export namespace sync {
         abstract FetchMissingTransactions(call: grpc_1.ServerUnaryCall<Null, TransactionIdList>, callback: grpc_1.sendUnaryData<TransactionIdList>): void;
         abstract MonitorLedgerSyncStatus(call: grpc_1.ServerUnaryCall<Null, SyncStatus>, callback: grpc_1.sendUnaryData<SyncStatus>): void;
         abstract ForceLedgerReconciliation(call: grpc_1.ServerUnaryCall<Null, Status>, callback: grpc_1.sendUnaryData<Status>): void;
-        abstract SetLedgerConflictResolutionStrategy(call: grpc_1.ServerUnaryCall<Null, Status>, callback: grpc_1.sendUnaryData<Status>): void;
+        abstract SetLedgerConflictResolutionStrategy(call: grpc_1.ServerUnaryCall<Strategy, Status>, callback: grpc_1.sendUnaryData<Status>): void;
         abstract ScheduleLedgerSync(call: grpc_1.ServerUnaryCall<Interval, Status>, callback: grpc_1.sendUnaryData<Status>): void;
         abstract ViewLedgerSyncHistory(call: grpc_1.ServerUnaryCall<Limit, SyncEventList>, callback: grpc_1.sendUnaryData<SyncEventList>): void;
     }
@@ -1209,7 +1209,7 @@ export namespace sync {
         ForceLedgerReconciliation: GrpcUnaryServiceInterface<Null, Status> = (message: Null, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<Status>, options?: grpc_1.CallOptions | grpc_1.requestCallback<Status>, callback?: grpc_1.requestCallback<Status>): grpc_1.ClientUnaryCall => {
             return super.ForceLedgerReconciliation(message, metadata, options, callback);
         };
-        SetLedgerConflictResolutionStrategy: GrpcUnaryServiceInterface<Null, Status> = (message: Null, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<Status>, options?: grpc_1.CallOptions | grpc_1.requestCallback<Status>, callback?: grpc_1.requestCallback<Status>): grpc_1.ClientUnaryCall => {
+        SetLedgerConflictResolutionStrategy: GrpcUnaryServiceInterface<Strategy, Status> = (message: Strategy, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<Status>, options?: grpc_1.CallOptions | grpc_1.requestCallback<Status>, callback?: grpc_1.requestCallback<Status>): grpc_1.ClientUnaryCall => {
             return super.SetLedgerConflictResolutionStrategy(message, metadata, options, callback);
         };
         ScheduleLedgerSync: GrpcUnaryServiceInterface<Interval, Status> = (message: Interval, metadata: grpc_1.Metadata | grpc_1.CallOptions | grpc_1.requestCallback<Status>, options?: grpc_1.CallOptions | grpc_1.requestCallback<Status>, callback?: grpc_1.requestCallback<Status>): grpc_1.ClientUnaryCall => {
