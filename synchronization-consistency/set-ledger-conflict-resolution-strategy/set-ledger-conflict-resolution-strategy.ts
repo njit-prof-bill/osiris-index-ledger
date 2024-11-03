@@ -6,8 +6,9 @@ export const setLedgerConflictResolutionStrategy: handleUnaryCall<
     sync.Status
 > = (request, respond) => {
     let newStrat = request.request.strategy;
-    if (newStrat=="latest" || newStrat=="merge" || newStrat=="manual"){
-      respond(null, new sync.Status({succeeded:true}))
+    if (newStrat == "latest" || newStrat == "merge" || newStrat == "manual"){
+      respond(null, new sync.Status({ succeeded: true }))
+    } else {
+      respond(null, new sync.Status({ succeeded: false }))
     }
-    respond(null, new sync.Status({succeeded:false}))
 }

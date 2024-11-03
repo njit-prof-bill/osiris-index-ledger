@@ -24,7 +24,7 @@ test("set to latest", (done) => {
 			expect(err).toBeNull();
 			expect(response?.succeeded).toEqual(true);
 		}
-	);
+	)
 });
 
 test("set to whatever", (done) => {
@@ -35,5 +35,5 @@ test("set to whatever", (done) => {
 			expect(err).toBeNull();
 			expect(response?.succeeded).toEqual(false);
 		}
-	);
+	)
 });
