@@ -31,13 +31,11 @@ test("set ledger conflict resolution strategy", (done) => {
 	);
 
   client.SetLedgerConflictResolutionStrategy(
-		new sync.Strategy({strategy:"whatever"}) ,
-		(err, response) => {
-
+		new sync.Strategy({strategy:"whatever"}),
+		function (err: grpc.ServiceError | null, response: sync.Status | undefined) {
 			done();
 			expect(err).toBeNull();
 			expect(response?.succeeded).toEqual(false);
-
 		},
 	);
 });

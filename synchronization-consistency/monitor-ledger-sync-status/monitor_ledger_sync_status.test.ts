@@ -20,19 +20,13 @@ afterAll(() => {
 test("monitor ledger sync status", (done) => {
     
 	client.MonitorLedgerSyncStatus(
-		new sync.Null() ,
-		(err, response) => {
-
+		new sync.Null(),
+		function (err: grpc.ServiceError | null, response: sync.SyncStatus | undefined) {
 			done();
-
 			expect(err).toBeNull();
-
 			expect(response?.status).toEqual("syncing");
             expect(response?.progress).toEqual(85);
             expect(response?.errors.length).toEqual(0);
-			
-			
-
 		},
 	);
 });
