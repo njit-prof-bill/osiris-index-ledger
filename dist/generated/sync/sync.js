@@ -1016,7 +1016,7 @@ export var sync;
                 requestStream: false,
                 responseStream: false,
                 requestSerialize: (message) => Buffer.from(message.serialize()),
-                requestDeserialize: (bytes) => Null.deserialize(new Uint8Array(bytes)),
+                requestDeserialize: (bytes) => Strategy.deserialize(new Uint8Array(bytes)),
                 responseSerialize: (message) => Buffer.from(message.serialize()),
                 responseDeserialize: (bytes) => Status.deserialize(new Uint8Array(bytes))
             },
