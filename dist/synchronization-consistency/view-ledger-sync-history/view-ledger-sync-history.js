@@ -9,7 +9,6 @@ const syncEventList = [
 export const viewLedgerSyncHistory = (request, respond) => {
     /* Create a new syncEventList that is restricted by the limit. */
     let limit = request.request.limit > 0 ? request.request.limit : 100;
-    console.log("The limit is: ", limit);
     /* Loop through all sync events and make sure not to surpass limit. */
     const syncEventListLimit = [];
     for (const syncEvent of syncEventList) {
