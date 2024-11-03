@@ -6,22 +6,18 @@ import { setLedgerConflictResolutionStrategy } from "./set_ledger_conflict_resol
 /* Add APIs here as we complete them. */
 
 export default function addModule(server: grpc.Server) {
-	/*addService(
+	addService(
 		server,
 		loadProtoService("proto/sync/sync.proto", "sync", "IndexSynchro"),
 		{
+		monitorLedgerSyncStatus : monitorLedgerSyncStatus,
+		setLedgerConflictResolutionStrategy : setLedgerConflictResolutionStrategy,
 		},
-	);*/
+	);
 	addService(
 		server,
 		loadProtoService("proto/hello.proto", "helloworld", "Greeter"),
 		{ SayHello: hello },
 	);
-
-	const syncService = loadProtoService("proto/sync/sync.proto", "sync", "IndexSynchro");
-	addService(server, syncService, {
-		monitorLedgerSyncStatus : monitorLedgerSyncStatus,
-		setLedgerConflictResolutionStrategy : setLedgerConflictResolutionStrategy,
-	});
 
 }
