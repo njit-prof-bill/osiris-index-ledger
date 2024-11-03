@@ -21,7 +21,7 @@ message TransactionId { string transaction_id = 1; }
 
 message UserId { string user_id = 1; }
 
-message TransactionLimit { int64 limit = 1; }
+message TransactionLimit { optional int64 limit = 1; }
 
 message CurrencyValue { float value = 1; }
 
