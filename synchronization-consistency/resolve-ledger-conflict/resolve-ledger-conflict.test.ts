@@ -21,7 +21,6 @@ test("resolveLatest", (done) => {
 		new sync.ConflictResolver({
 			transaction_id: "1",
 			resolution_strategy: "latest",
-
 		}),
 		function (err: ServiceError | null, response: sync.Status | undefined) {
 			done();
@@ -35,7 +34,6 @@ test("resolveLatest", (done) => {
 		new sync.ConflictResolver({
 			transaction_id: "1",
 			resolution_strategy: "merge",
-
 		}),
 		function (err: ServiceError | null, response: sync.Status | undefined) {
 			done();
@@ -49,7 +47,6 @@ test("resolveLatest", (done) => {
 		new sync.ConflictResolver({
 			transaction_id: "1",
 			resolution_strategy: "manual",
-
 		}),
 		function (err: ServiceError | null, response: sync.Status | undefined) {
 			done();
@@ -63,7 +60,6 @@ test("resolveLatest", (done) => {
 		new sync.ConflictResolver({
 			transaction_id: "1",
 			resolution_strategy: "error",
-
 		}),
 		function (err: ServiceError | null, response: sync.Status | undefined) {
 			done();

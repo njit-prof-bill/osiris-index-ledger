@@ -19,13 +19,12 @@ afterAll(() => {
 test("should successfully schedule daily sync", (done) => {
     client.ScheduleLedgerSync(
         new sync.Interval({ interval: "daily" }),
-        function (err: grpc.ServiceError | null, response: sync.Status | undefined)
-        {
+        function (err: grpc.ServiceError | null, response: sync.Status | undefined) {
             done();
             expect(response?.succeeded).toEqual(true);
         }
     )
-});
+})
 
 test("should successfully schedule hourly sync", (done) => {
     client.ScheduleLedgerSync(
@@ -47,7 +46,7 @@ test("should successfully schedule weekly sync", (done) => {
             expect(response?.succeeded).toEqual(true);
         }
     )
-})
+});
 
 test("should return false for invalid interval", (done) => {
     client.ScheduleLedgerSync(
@@ -59,7 +58,7 @@ test("should return false for invalid interval", (done) => {
             expect(response?.succeeded).toEqual(false);
         }
     )
-})
+});
 
 test("should return false for empty interval", (done) => {
     client.ScheduleLedgerSync(
@@ -71,4 +70,4 @@ test("should return false for empty interval", (done) => {
             expect(response?.succeeded).toEqual(false);
         }
     )
-})
+});

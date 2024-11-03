@@ -1,9 +1,8 @@
 import grpc, { status } from "@grpc/grpc-js";
 import { server, serverUp, target } from "../../main.js";
 import { sync } from "../../generated/sync/sync.js";
-import { setLedgerConflictResolutionStrategy } from "./set-ledger-conflict-resolution-strategy.js";
 
-let client : sync.IndexSynchroClient;
+let client: sync.IndexSynchroClient;
 
 beforeAll(async () => {
 	await serverUp;
@@ -17,25 +16,24 @@ afterAll(() => {
 	server.forceShutdown();
 });
 
-test("set ledger conflict resolution strategy", (done) => {
-    
+test("set to latest", (done) => {
 	client.SetLedgerConflictResolutionStrategy(
-		new sync.Strategy({strategy:"latest"}) ,
-		(err, response) => {
-
+		new sync.Strategy({ strategy:"latest" }),
+		function (err: grpc.ServiceError | null, response: sync.Status | undefined) {
 			done();
 			expect(err).toBeNull();
 			expect(response?.succeeded).toEqual(true);
-
-		},
+		}
 	);
+});
 
-  client.SetLedgerConflictResolutionStrategy(
+test("set to whatever", (done) => {
+  	client.SetLedgerConflictResolutionStrategy(
 		new sync.Strategy({strategy:"whatever"}),
 		function (err: grpc.ServiceError | null, response: sync.Status | undefined) {
 			done();
 			expect(err).toBeNull();
 			expect(response?.succeeded).toEqual(false);
-		},
+		}
 	);
 });
