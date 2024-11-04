@@ -1,5 +1,5 @@
 import grpc, { ServiceError } from "@grpc/grpc-js";
-import { server, serverUp, target } from "../../main.js";
+import { server, serverUp, target } from "../../main-aces.js";
 import { sync } from "../../generated/sync/sync.js";
 
 let client: sync.IndexSynchroClient;
