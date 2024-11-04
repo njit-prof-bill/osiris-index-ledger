@@ -10,14 +10,14 @@ service IndexSynchro {
     rpc FetchMissingTransactions(Null) returns (TransactionIdList) {}
     rpc MonitorLedgerSyncStatus(Null) returns (SyncStatus) {}
     rpc ForceLedgerReconciliation(Null) returns (Status) {}
-    rpc SetLedgerConflictResolutionStrategy(Null) returns (Status) {}
+    rpc SetLedgerConflictResolutionStrategy(Strategy) returns (Status) {}
     rpc ScheduleLedgerSync(Interval) returns (Status) {}
     rpc ViewLedgerSyncHistory(Limit) returns (SyncEventList) {}
 }
 
 message Null {};
 
-message Status {bool succeeded = 1; }
+message Status { bool succeeded = 1; }
 
 message TransactionId { string transaction_id = 1; }
 
