@@ -1,6 +1,8 @@
 import grpc from "@grpc/grpc-js";
 import { addService, loadProtoService } from "../proto.js";
 import { hello } from "./hello/hello.js";
+import { ForceLedgerReconciliation } from "./force_ledger_reconciliation/force_ledger_reconciliation.js"
+import { BroadcastTransaction } from "./broadcast_transaction_to_nodes/broadcast_transaction_to_nodes.js";
 import { monitorLedgerSyncStatus } from "./monitor-ledger-sync-status/monitor_ledger_sync_status.js";
 import { setLedgerConflictResolutionStrategy } from "./set-ledger-conflict-resolution-strategy/set-ledger-conflict-resolution-strategy.js";
 import { scheduleLedgerSync } from "./schedule-ledger-sync/schedule-ledger-sync.js";
@@ -14,8 +16,10 @@ export default function addModule(server: grpc.Server) {
 		server,
 		loadProtoService("proto/sync/sync.proto", "sync", "IndexSynchro"),
 		{
-		  	MonitorLedgerSyncStatus : monitorLedgerSyncStatus,
-		  	SetLedgerConflictResolutionStrategy : setLedgerConflictResolutionStrategy,
+			BroadcastTransaction: BroadcastTransaction,
+			ForceLedgerReconciliation: ForceLedgerReconciliation,
+		  MonitorLedgerSyncStatus : monitorLedgerSyncStatus,
+		  SetLedgerConflictResolutionStrategy : setLedgerConflictResolutionStrategy,
 			ScheduleLedgerSync: scheduleLedgerSync,
 			ViewLedgerSyncHistory: viewLedgerSyncHistory,
 			ResolveLedgerConflict: resolveLedgerConflict,
@@ -27,5 +31,4 @@ export default function addModule(server: grpc.Server) {
 		loadProtoService("proto/hello.proto", "helloworld", "Greeter"),
 		{ SayHello: hello },
 	);
-
 }

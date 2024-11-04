@@ -17,7 +17,7 @@ service IndexSynchro {
 
 message Null {};
 
-message Status {bool succeeded = 1; }
+message Status { bool succeeded = 1; }
 
 message TransactionId { string transaction_id = 1; }
 
