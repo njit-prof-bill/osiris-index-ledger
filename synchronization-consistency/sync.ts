@@ -19,11 +19,11 @@ export default function addModule(server: grpc.Server) {
 		loadProtoService("proto/sync/sync.proto", "sync", "IndexSynchro"),
 		{
 			SyncLedger: syncLedger,
-			FetchMissingTransactions: fetchMissingTransactions
+			FetchMissingTransactions: fetchMissingTransactions,
 			BroadcastTransaction: BroadcastTransaction,
 			ForceLedgerReconciliation: ForceLedgerReconciliation,
-		  MonitorLedgerSyncStatus : monitorLedgerSyncStatus,
-		  SetLedgerConflictResolutionStrategy : setLedgerConflictResolutionStrategy,
+		    MonitorLedgerSyncStatus : monitorLedgerSyncStatus,
+		    SetLedgerConflictResolutionStrategy : setLedgerConflictResolutionStrategy,
 			ScheduleLedgerSync: scheduleLedgerSync,
 			ViewLedgerSyncHistory: viewLedgerSyncHistory,
 			ResolveLedgerConflict: resolveLedgerConflict,
