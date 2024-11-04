@@ -1,6 +1,5 @@
 import grpc from "@grpc/grpc-js";
 import { addService, loadProtoService } from "../proto.js";
-import { hello } from "./hello/hello.js";
 import { syncLedger } from "./sync_ledger/sync_ledger.js";
 import { fetchMissingTransactions } from "./fetch_missing_transactions_command/fetch.js";
 import { ForceLedgerReconciliation } from "./force_ledger_reconciliation/force_ledger_reconciliation.js";
