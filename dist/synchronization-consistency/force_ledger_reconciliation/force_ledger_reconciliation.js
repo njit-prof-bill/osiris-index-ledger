@@ -1,11 +1,11 @@
 import { sync } from "../../generated/sync/sync.js";
 //Define a local and global ledger, local ledger will be compared to global ledger during forced reconciliation
-export const global_ledger = [
+const global_ledger = [
     new sync.TransactionId({ transaction_id: "txn-125" }),
     new sync.TransactionId({ transaction_id: "txn-126" }),
     new sync.TransactionId({ transaction_id: "txn-127" }),
 ];
-export const local_ledger = [
+const local_ledger = [
     new sync.TransactionId({ transaction_id: "txn-125" }),
     new sync.TransactionId({ transaction_id: "txn-126" }),
     new sync.TransactionId({ transaction_id: "txn-127" }),

@@ -7,6 +7,9 @@ beforeAll(async () => {
     await serverUp;
     client = new sync.IndexSynchroClient(target, grpc.credentials.createInsecure());
 });
+afterAll(() => {
+    server.forceShutdown();
+});
 test("should return true for a successful reconciliation", (done) => {
     client.ForceLedgerReconciliation(new sync.Null, function (err, response) {
         done();
@@ -14,9 +17,6 @@ test("should return true for a successful reconciliation", (done) => {
         // Expect reconciliation to work
         expect(status).toBe(true);
     });
-});
-afterAll(() => {
-    server.forceShutdown();
 });
 /*
 describe('forceLedgerReconciliation', () => {
