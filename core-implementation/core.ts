@@ -1,6 +1,5 @@
 import grpc from "@grpc/grpc-js";
 import { addService, loadProtoService } from "../proto.js";
-import { hello } from "./hello/hello.js";
 import { recordTransaction } from "./record_transaction/record_transaction.js";
 import { getTransactionDetails } from "./get_transaction_details/get_transaction_details.js";
 import { searchTransactionByUser } from "./search_transaction_by_user/search_transaction_by_user.js";
@@ -28,10 +27,5 @@ export default function addModule(server: grpc.Server) {
 			DeleteTransaction: deleteTransaction,
 			AuditLedger: auditLedger,
 		},
-	);
-	addService(
-		server,
-		loadProtoService("proto/hello.proto", "helloworld", "Greeter"),
-		{ SayHello: hello },
 	);
 }
