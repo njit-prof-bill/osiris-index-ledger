@@ -1,9 +1,11 @@
 import grpc from "@grpc/grpc-js";
 import core from "./core-implementation/core.js";
+import sync from "./synchronization-consistency/sync.js";
 
 export let target = "0.0.0.0:50051";
 export const server = new grpc.Server();
 core(server);
+sync(server);
 
 async function retryBind(): Promise<void> {
 	return bind().catch((err: Error) => {
