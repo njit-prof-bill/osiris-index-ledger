@@ -2,12 +2,12 @@ import { handleUnaryCall } from "@grpc/grpc-js";
 import { sync } from "../../generated/sync/sync.js";
 
 //Define a local and global ledger, local ledger will be compared to global ledger during forced reconciliation
-export const global_ledger: sync.TransactionId[] = [
+const global_ledger: sync.TransactionId[] = [
     new sync.TransactionId({transaction_id: "txn-125"}),
     new sync.TransactionId({transaction_id: "txn-126"}),
     new sync.TransactionId({transaction_id: "txn-127"}),
 ];
-export const local_ledger: sync.TransactionId[] = [
+const local_ledger: sync.TransactionId[] = [
     new sync.TransactionId({transaction_id: "txn-125"}),
     new sync.TransactionId({transaction_id: "txn-126"}),
     new sync.TransactionId({transaction_id: "txn-127"}),
@@ -21,7 +21,7 @@ export const ForceLedgerReconciliation: handleUnaryCall<sync.Null, sync.Status> 
             // Create sets of transaction IDs for easier comparison
             const globalSet = new Set(global_ledger.map(tx => tx.transaction_id));
             const localSet = new Set(local_ledger.map(tx => tx.transaction_id));
-            
+        
             // Find missing transactions in the local ledger
             const missingInLocal = [...globalSet].filter(id => !localSet.has(id));
 
@@ -56,11 +56,6 @@ export const ForceLedgerReconciliation: handleUnaryCall<sync.Null, sync.Status> 
         }
 };
     
-
-
-
-
-
     // old basic code
     /*
     // Reconciliation process occurs here

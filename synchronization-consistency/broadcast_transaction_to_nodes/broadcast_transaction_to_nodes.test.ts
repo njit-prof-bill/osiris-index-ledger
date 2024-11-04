@@ -16,9 +16,9 @@ afterAll(() => {
     server.forceShutdown();
 });
 
-test("should return true for a successful reconciliation", (done) => {
-    client.ForceLedgerReconciliation(
-        new sync.Null,
+test("should return true for succesfully broadcasting trasaction to all nodes", (done) => {
+    client.BroadcastTransaction(
+        new sync.TransactionId,
         function (err: Error | null, response: sync.Status | undefined) {
             done();
             const status = response?.succeeded;
@@ -29,13 +29,3 @@ test("should return true for a successful reconciliation", (done) => {
     )
 })
 
-
-
-/*
-describe('forceLedgerReconciliation', () => {
-    it('should return true when reconciliation is successful', () => {
-        const result = ForceLedgerReconciliation();
-        expect(result).toBe(true);
-    });
-}); 
-*/
