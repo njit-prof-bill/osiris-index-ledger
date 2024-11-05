@@ -1,0 +1,45 @@
+{
+	"name": "osiris-index-ledger",
+	"version": "1.0.0",
+	"description": "",
+	"main": "index.js",
+	"type": "module",
+	"dependencies": {
+		"@grpc/grpc-js": "^1.12.2",
+		"@grpc/proto-loader": "^0.7.13",
+		"@types/google-protobuf": "^3.15.12",
+		"google-protobuf": "^3.21.4",
+		"grpc-tools": "^1.12.4",
+		"protoc-gen-ts": "^0.8.7"
+	},
+	"devDependencies": {
+		"@types/jest": "^29.5.13",
+		"clang-format": "^1.8.0",
+		"glob": "^11.0.0",
+		"ncp": "^2.0.0",
+		"rimraf": "^6.0.1",
+		"prettier": "^3.3.3",
+		"jest": "^29.7.0",
+		"tsx": "^4.19.1",
+		"typescript": "^5.6.3"
+	},
+	"scripts": {
+		"format:ts": "tsx scripts/format_ts.ts",
+		"format:proto": "tsx scripts/format_proto.ts",
+		"format": "npm run format:proto && npm run format:ts",
+		"build:proto": "tsx scripts/build_proto.ts",
+		"build": "npm run clean && npm run build:proto && tsc -p . && ncp proto dist/proto",
+		"clean": "rimraf dist && rimraf generated",
+		"dev": "tsx --watch main.ts",
+		"test": "npm run build && node --experimental-vm-modules node_modules/jest/bin/jest.js --rootDir dist"
+	},
+	"repository": {
+		"type": "git",
+		"url": "git+https://github.com/AlaraBread/osiris-index-ledger.git"
+	},
+	"author": "",
+	"bugs": {
+		"url": "https://github.com/AlaraBread/osiris-index-ledger/issues"
+	},
+	"homepage": "https://github.com/AlaraBread/osiris-index-ledger#readme"
+}

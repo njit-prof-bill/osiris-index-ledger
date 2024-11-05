@@ -1,0 +1,57 @@
+syntax = "proto3";
+
+package core;
+
+service IndexLedger {
+	rpc RecordTransaction(Transaction) returns (Status) {}
+	rpc UpdateTransaction(TransactionUpdate) returns (Status) {}
+	rpc GetTransactionDetails(TransactionId) returns (Transaction) {}
+	rpc ListTransactions(TransactionLimit) returns (TransactionList) {}
+	rpc DeleteTransaction(TransactionId) returns (Status) {}
+	rpc AuditLedger(Null) returns (AuditReport) {}
+	rpc SearchTransactionsByUser(UserId) returns (TransactionList) {}
+	rpc GetAccountBalance(UserId) returns (CurrencyValue) {}
+	rpc CalculateTotalLedgerValue(Null) returns (CurrencyValue) {}
+	rpc VerifyTransactionIntegrity(TransactionId) returns (Status) {}
+}
+
+message Status { bool succeeded = 1; }
+
+message TransactionId { string transaction_id = 1; }
+
+message UserId { string user_id = 1; }
+
+message TransactionLimit { optional int64 limit = 1; }
+
+message CurrencyValue { float value = 1; }
+
+message Transaction {
+	string transaction_id = 1;
+	string sender = 2;
+	string receiver = 3;
+	// TODO: a bigint might be more appropriate for currency amounts
+	// talk to prof about this
+	float amount = 4;
+	string timestamp = 5;
+}
+
+message TransactionUpdate {
+	string transaction_id = 1;
+	string sender = 2;
+	string receiver = 3;
+	float amount = 4;
+}
+
+message TransactionList { repeated Transaction list = 1; }
+
+message AuditReport {
+	string discrepancies_found = 1;
+	repeated Issue issues = 2;
+}
+
+message Issue {
+	// TODO: get clarification here
+	// the spec doesn't specify what should be in here
+}
+
+message Null {}
